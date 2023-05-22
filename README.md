@@ -73,8 +73,8 @@ print(bbox.to_tlwh())   # (0, 0, 10, 10)
 from bbox import BoundingBox
 from bbox.measure import union, intersect
 
-bbox_a = BoundingBox.from_xyxy((0, 0, 10, 10))
-bbox_b = BoundingBox.from_xyxy((5, 5, 15, 15))
+bbox_a = BoundingBox.from_xyxy(0, 0, 10, 10)
+bbox_b = BoundingBox.from_xyxy(5, 5, 15, 15)
 
 # Get the union area of bounding boxes
 print(union(bbox_a, bbox_b))    # 175
@@ -88,8 +88,8 @@ print(intersect(bbox_a, bbox_b))    # 25
 from bbox import BoundingBox
 from bbox.measure import iou, giou, diou, ciou
 
-bbox_a = BoundingBox.from_xyxy((0, 0, 10, 10))
-bbox_b = BoundingBox.from_xyxy((5, 5, 15, 15))
+bbox_a = BoundingBox.from_xyxy(0, 0, 10, 10)
+bbox_b = BoundingBox.from_xyxy(5, 5, 15, 15)
 
 # Compute the IoU and its variation
 print(f'IoU: {iou(bbox_a, bbox_b):.6f}')    # IoU: 0.142857
