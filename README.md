@@ -66,3 +66,34 @@ print(bbox.to_xyxy())   # (0, 0, 10, 10)
 # Format it to `tlwh`
 print(bbox.to_tlwh())   # (0, 0, 10, 10)
 ```
+
+## Measurement
+### Area
+```python
+from bbox import BoundingBox
+from bbox.measure import union, intersect
+
+bbox_a = BoundingBox.from_xyxy((0, 0, 10, 10))
+bbox_b = BoundingBox.from_xyxy((5, 5, 15, 15))
+
+# Get the union area of bounding boxes
+print(union(bbox_a, bbox_b))    # 175
+
+# Get the intersection area of bounding boxes
+print(intersect(bbox_a, bbox_b))    # 25
+```
+
+### IoU (Intersection over Union)
+```python
+from bbox import BoundingBox
+from bbox.measure import iou, giou, diou, ciou
+
+bbox_a = BoundingBox.from_xyxy((0, 0, 10, 10))
+bbox_b = BoundingBox.from_xyxy((5, 5, 15, 15))
+
+# Compute the IoU and its variation
+print(f'IoU: {iou(bbox_a, bbox_b):.6f}')    # IoU: 0.142857
+print(f'GIoU: {giou(bbox_a, bbox_b):.6f}')  # GIoU: -0.079365
+print(f'DIoU: {diou(bbox_a, bbox_b):.6f}')  # DIoU: 0.0153061
+print(f'CIoU: {ciou(bbox_a, bbox_b):.6f}')  # CIoU: 0.0153061
+```
