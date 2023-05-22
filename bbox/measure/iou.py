@@ -1,3 +1,5 @@
+import math
+
 from ..bbox import BoundingBox
 from ..transform import smallest_enclosing
 from .area import intersect, union
@@ -65,3 +67,27 @@ def diou(bbox1: BoundingBox, bbox2: BoundingBox) -> float:
     se_dist = (sx1 - sx2) ** 2 + (sy1 - sy2) ** 2
 
     return iou_score - center_dist / se_dist
+
+
+def ciou(bbox1: BoundingBox, bbox2: BoundingBox) -> float:
+    """
+    Compute CIoU score of bounding boxes.
+
+    Args:
+        bbox1 (BoundingBox): The predict bounding box.
+        bbox2 (BoundingBox): The groundtruth bounding box.
+
+    Returns:
+        float: the CIoU score
+    """
+    iou_score = iou(bbox1, bbox2)
+    diou_score = diou(bbox1, bbox2)
+
+    # Compute v
+    # 4 / (math.pi ** 2) = 0.4052847345693511
+    v = 0.4052847345693511 * (math.atan(bbox1.w / bbox1.h) - math.atan(bbox2.w / bbox2.h)) ** 2
+
+    # Compute alpha
+    alpha = v / (1 - iou_score + v)
+
+    return diou_score - alpha * v
