@@ -2,7 +2,15 @@
 
 Dealing with the bounding box is pretty common and important in the related tasks of object detection or tracking, such as `Yolo` and `Deepsort`. Handling with `bbox` can greatly reduce the development time and reduce the chance of errors on bounding box.
 
+## Installation
+Installing `bbox` and the dependencies via `pip`
+```bash
+pip install git+https://github.com/Pandede/bbox
+```
+
 ## Quick start
+
+
 ### Basic operations
 ```python
 from bbox import BoundingBox
