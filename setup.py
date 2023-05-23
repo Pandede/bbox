@@ -5,7 +5,7 @@ setup(
     version='0.1.0',
     description='A Python library for handling the 2D bounding box.',
     author='Pandede',
-    packages=[
+    install_requires=[
         "pydantic"
     ]
 )
